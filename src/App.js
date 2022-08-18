@@ -14,6 +14,9 @@ const Login = () => {
 const Register = () => {
   return <p>這是註冊頁面</p>;
 };
+const NotFound = () => {
+  return <p>這是 NotFound 頁面</p>;
+};
 
 function App() {
   return (
@@ -34,6 +37,12 @@ function App() {
           </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
+        <Routes>
+          <Route path="/" element={<Todo />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
+          <Route path="*" element={<NotFound />}/>
+        </Routes>
         {/* 練習區 */}
       </HashRouter>
     </div>
