@@ -4,7 +4,9 @@ import {
   NavLink,
   Routes,
   Route,
-  useNavigate
+  useNavigate,
+  useParams,
+  Outlet
 } from 'react-router-dom';
 
 const Todo = () => {
@@ -28,6 +30,18 @@ const Register = () => {
 const NotFound = () => {
   return <p>這是 NotFound 頁面</p>;
 };
+const Post = () => {
+  return (
+    <>
+      <p>這是 Post 頁面</p>
+      <Outlet />
+    </>
+  );
+};
+const PostId = () => {
+  const { postId } = useParams();
+  return <p>Post ID: {postId}</p>;
+};
 
 function App() {
   return (
@@ -46,13 +60,19 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post 詳細頁面</p>
+          </NavLink>
         </div>
         {/* Routes, Route 練習區 */}
         <Routes>
-          <Route path="/todo" element={<Todo />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path="*" element={<NotFound />}/>
+          <Route path="/todo" element={<Todo />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="/post" element={<Post />}>
+            <Route path=":postId" element={<PostId />} />
+          </Route>
         </Routes>
         {/* 練習區 */}
       </HashRouter>
